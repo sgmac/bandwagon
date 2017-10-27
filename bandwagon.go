@@ -20,8 +20,8 @@ type Client struct {
 	// Credentials used for http connections.
 	creds Credentials
 
-	// VirtualServer manage basic operations with a VPS.
-	VirtualServer
+	// // Image manage basic operations with a VPS.
+	// Image
 }
 
 // Credentials keeps the api_key and the virtual eid.

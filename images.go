@@ -6,6 +6,12 @@ import (
 	"net/url"
 )
 
+/// Image interface does basic actions for a given vps.
+type Image interface {
+	// Lists available operating systems.
+	ListImages() (*Images, error)
+}
+
 // Images holds the JSON response for the API call.
 type Images struct {
 	Templates []string `json:"templates"`
