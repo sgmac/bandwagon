@@ -15,7 +15,7 @@ func main() {
 	}
 
 	c := bandwagon.NewClient(creds)
-	data, err := c.GetOperatingSystemsList()
+	data, err := c.ListImages()
 	if err != nil {
 		log.Println(err)
 	}
