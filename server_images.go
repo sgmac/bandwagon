@@ -6,15 +6,15 @@ import (
 	"net/url"
 )
 
-// OperatingSystems holds the JSON response for the API call.
-type OperatingSystems struct {
+// Images holds the JSON response for the API call.
+type Images struct {
 	Templates []string `json:"templates"`
 	Installed string   `json:"installed"`
 	Error     int32    `json:"error"`
 }
 
-// GetOperatingSystemsList returns the available OS images.
-func (c *Client) GetOperatingSystemsList() (*OperatingSystems, error) {
+// ListImages returns the available OS images.
+func (c *Client) ListImages() (*Images, error) {
 
 	veid := c.creds.VeID
 	apikey := c.creds.APIKey
@@ -33,8 +33,9 @@ func (c *Client) GetOperatingSystemsList() (*OperatingSystems, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer resp.Body.Close()
 
-	os := new(OperatingSystems)
+	os := new(Images)
 
 	err = json.NewDecoder(resp.Body).Decode(&os)
 	if err != nil {
