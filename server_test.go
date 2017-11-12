@@ -29,7 +29,7 @@ func TestSuccessReboot(t *testing.T) {
 
 	log.Println("With a success reboot we should get")
 	{
-		log.Printf("\t%c got %d error response, expected 0\n", success, resp.Error)
+		log.Printf("\t%c %d error response, expected 0\n", success, resp.Error)
 	}
 
 }
@@ -51,9 +51,9 @@ func TestFailedReboot(t *testing.T) {
 		t.Errorf("client.Reboot got %v\n err :%v\n", resp, err)
 	}
 
-	log.Println("With a success reboot we should get")
+	log.Println("With a failed reboot we should get")
 	{
-		log.Printf("\t%c got %d error response, expected 1\n", failure, resp.Error)
+		log.Printf("\t%c %d error response, expected 1\n", failure, resp.Error)
 	}
 
 }
@@ -77,7 +77,7 @@ func TestSuccessStart(t *testing.T) {
 
 	log.Println("With a success start we should get")
 	{
-		log.Printf("\t%c got %d error response, expected 0\n", success, resp.Error)
+		log.Printf("\t%c %d error response, expected 0\n", success, resp.Error)
 	}
 }
 
@@ -100,7 +100,7 @@ func TestSuccessStop(t *testing.T) {
 
 	log.Println("With a success stop we should get")
 	{
-		log.Printf("\t%c got %d error response, expected 0\n", success, resp.Error)
+		log.Printf("\t%c %d error response, expected 0\n", success, resp.Error)
 	}
 }
 
@@ -121,8 +121,8 @@ func TestSuccessKill(t *testing.T) {
 		t.Errorf("client.Stop got %v\n err :%v\n", resp, err)
 	}
 
-	log.Println("With a success stop we should get")
+	log.Println("With a success kill we should get")
 	{
-		log.Printf("\t%c got %d error response, expected 0\n", success, resp.Error)
+		log.Printf("\t%c %d error response, expected 0\n", success, resp.Error)
 	}
 }
