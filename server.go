@@ -23,7 +23,7 @@ func (c *Client) Reboot() (*ServerResponse, error) {
 
 	veid := c.creds.VeID
 	apikey := c.creds.APIKey
-	apiPath := "v1/restart?"
+	apiPath := "/v1/restart?"
 	baseURL := c.BaseURL
 
 	u := baseURL + apiPath + "veid=" + veid + "&api_key=" + apikey

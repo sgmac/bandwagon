@@ -3,7 +3,6 @@ package bandwagon
 import (
 	"fmt"
 	"net/http"
-	"net/http/httptest"
 	"reflect"
 	"testing"
 )
@@ -17,13 +16,7 @@ func TestListImages(t *testing.T) {
 	"templates": ["debian-x64", "centos-7" ]
 	}
 	`
-	mux := http.NewServeMux()
-	server := httptest.NewServer(mux)
-
-	creds := Credentials{"empty", "empty"}
-	client := NewClient(creds)
-	client.BaseURL = server.URL
-
+	setup()
 	mux.HandleFunc("/v1/getAvailableOS", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, imagesResponse)
 	})
@@ -47,13 +40,8 @@ func TestListImages(t *testing.T) {
 func TestListImagesDecode(t *testing.T) {
 
 	var forceError = `[]`
-	mux := http.NewServeMux()
-	server := httptest.NewServer(mux)
 
-	creds := Credentials{"empty", "empty"}
-	client := NewClient(creds)
-	client.BaseURL = server.URL
-
+	setup()
 	mux.HandleFunc("/v1/getAvailableOS", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, forceError)
 	})
