@@ -1,11 +1,5 @@
 package bandwagon
 
-import (
-	"encoding/json"
-	"net/http"
-	"net/url"
-)
-
 // Server provides basic operations for a given vps.
 type Server interface {
 	Reboot() (*ServerResponse, error)
@@ -20,28 +14,38 @@ type ServerResponse struct {
 
 // Reboot restarts the vps with a given VeID
 func (c *Client) Reboot() (*ServerResponse, error) {
-
-	veid := c.creds.VeID
-	apikey := c.creds.APIKey
 	apiPath := "/v1/restart?"
-	baseURL := c.BaseURL
-
-	u := baseURL + apiPath + "veid=" + veid + "&api_key=" + apikey
-
-	ul, _ := url.Parse(u)
-	req := &http.Request{
-		URL:    ul,
-		Method: http.MethodGet,
-	}
-
-	resp, err := c.http.Do(req)
+	response, err := c.doRequest(apiPath)
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	return response, nil
+}
 
-	response := new(ServerResponse)
-	err = json.NewDecoder(resp.Body).Decode(&response)
+// Stop stops a vps.
+func (c *Client) Stop() (*ServerResponse, error) {
+	apiPath := "/v1/stop?"
+	response, err := c.doRequest(apiPath)
+	if err != nil {
+		return nil, err
+	}
+	return response, nil
+}
+
+// Start starts a vps.
+func (c *Client) Start() (*ServerResponse, error) {
+	apiPath := "/v1/start?"
+	response, err := c.doRequest(apiPath)
+	if err != nil {
+		return nil, err
+	}
+	return response, nil
+}
+
+// Kill kills a vps.
+func (c *Client) Kill() (*ServerResponse, error) {
+	apiPath := "/v1/kill?"
+	response, err := c.doRequest(apiPath)
 	if err != nil {
 		return nil, err
 	}
