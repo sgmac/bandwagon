@@ -89,7 +89,6 @@ func (c *Client) Install(os string) (*InstallResponse, error) {
 
 	u := baseURL + apiPath + "veid=" + veid + "&api_key=" + apikey
 
-	fmt.Println(u)
 	ul, _ := url.Parse(u)
 	req := &http.Request{
 		URL:    ul,

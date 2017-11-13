@@ -93,7 +93,6 @@ func TestSuccessStop(t *testing.T) {
 	mux.HandleFunc("/v1/stop", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, successStop)
 	})
-	fmt.Println(mux)
 
 	resp, err := client.Stop()
 	if err != nil {
