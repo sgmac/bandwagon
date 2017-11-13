@@ -93,6 +93,7 @@ func TestSuccessStop(t *testing.T) {
 	mux.HandleFunc("/v1/stop", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, successStop)
 	})
+	fmt.Println(mux)
 
 	resp, err := client.Stop()
 	if err != nil {
@@ -119,7 +120,7 @@ func TestSuccessKill(t *testing.T) {
 
 	resp, err := client.Kill()
 	if err != nil {
-		t.Errorf("client.Stop got %v\n err :%v\n", resp, err)
+		t.Errorf("client.Kill got %v\n err :%v\n", resp, err)
 	}
 
 	log.Println("With a success kill we should get")

@@ -70,6 +70,16 @@ func (c *Client) Kill() (*ServerResponse, error) {
 	return response, nil
 }
 
+// Hostname sets a new hostname for vps.
+func (c *Client) Hostname(host string) (*ServerResponse, error) {
+	apiPath := fmt.Sprintf("/v1/setHostname?newHostname=%s&", host)
+	response, err := c.doRequest(apiPath)
+	if err != nil {
+		return nil, err
+	}
+	return response, nil
+}
+
 // Install installs a given OS on a VPS.
 func (c *Client) Install(os string) (*InstallResponse, error) {
 	apiPath := fmt.Sprintf("/v1/reinstallOS?os=%s&", os)
