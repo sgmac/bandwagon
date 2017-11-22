@@ -26,7 +26,7 @@ type InstallResponse struct {
 	AdditionalErrorCode int64
 	AdditionalErrorInfo string
 	RootPassword        string
-	SSHPort             string
+	SSHPort             int16
 	NotificationEmail   string
 }
 
